@@ -1,6 +1,14 @@
-const { dir } = require("console");
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
-const { readdirSync } = require("fs");
+const {
+  dir
+} = require("console");
+const {
+  MessageEmbed,
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
+const {
+  readdirSync
+} = require("fs");
 
 module.exports = {
   category: "Informacion",
@@ -12,15 +20,15 @@ module.exports = {
     //Botones
     const button = new MessageActionRow().addComponents(
       new MessageButton()
-        .setURL(
-          "https://discord.com/api/oauth2/authorize?client_id=868205294096887890&permissions=8&scope=bot"
-        )
-        .setLabel("Invitame")
-        .setStyle("LINK"),
+      .setURL(
+        "https://discord.com/api/oauth2/authorize?client_id=868205294096887890&permissions=8&scope=bot"
+      )
+      .setLabel("Invitame")
+      .setStyle("LINK"),
       new MessageButton()
-        .setURL("https://discord.gg/Y93Dad7")
-        .setLabel("Soporte")
-        .setStyle("LINK")
+      .setURL("https://discord.gg/Y93Dad7")
+      .setLabel("Soporte")
+      .setStyle("LINK")
     );
     //Comando Help
     if (!args[0]) {
@@ -54,7 +62,10 @@ module.exports = {
           `Escribe ${prefix}help <comando> para ayuda detallada. | Desarrollado por DGAB#8574`
         )
         .setColor(color);
-      return message.channel.send({ embeds: [embed], components: [button] });
+      return message.channel.send({
+        embeds: [embed],
+        components: [button]
+      });
     } else {
       const command =
         client.commands.get(args[0].toLowerCase()) ||
@@ -67,7 +78,9 @@ module.exports = {
             `¡Comando no valido! Use \`${prefix}help\` para ver todos los comandos`
           )
           .setColor("FF0000");
-        return message.channel.send({ embeds: [embed] });
+        return message.channel.send({
+          embeds: [embed]
+        });
       }
       const embed = new MessageEmbed()
         .setTitle(
@@ -84,33 +97,35 @@ module.exports = {
         )
         .addField(
           "Aliases:",
-          command.aliases
-            ? `\`${command.aliases.join("` `")}\``
-            : "El comando no tiene aliases."
+          command.aliases ?
+          `\`${command.aliases.join("` `")}\`` :
+          "El comando no tiene aliases."
         )
         .addField(
           "Cooldown:",
-          command.cooldown
-            ? `\`${command.cooldown}\``
-            : "El comando no tiene aliases."
+          command.cooldown ?
+          `\`${command.cooldown}\`` :
+          "El comando no tiene aliases."
         )
         .addField(
           "Descripcion:",
-          command.description
-            ? command.description
-            : "El comando no tiene descripcion."
+          command.description ?
+          command.description :
+          "El comando no tiene descripcion."
         )
         .addField(
           "Uso:",
-          command.usage
-            ? `\`${prefix}${command.name} ${command.usage}\``
-            : `\`${prefix}${command.name}\``
+          command.usage ?
+          `\`${prefix}${command.name} ${command.usage}\`` :
+          `\`${prefix}${command.name}\``
         )
         .setFooter(
           `<> = obligatorio | [] = opcional. | No incluyas estos símbolos al momento de ejecutar el comando.`
         )
         .setColor(color);
-      return message.channel.send({ embeds: [embed] });
+      return message.channel.send({
+        embeds: [embed]
+      });
     }
   },
 };
