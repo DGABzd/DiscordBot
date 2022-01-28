@@ -1,7 +1,4 @@
 const {
-  dir
-} = require("console");
-const {
   MessageEmbed,
   MessageActionRow,
   MessageButton
@@ -9,20 +6,20 @@ const {
 const {
   readdirSync
 } = require("fs");
+const {
+  config
+} = require("../..");
 
 module.exports = {
   category: "Informacion",
   name: "help",
   aliases: ["ayuda", "commands"],
   description: "Para ver la lista de comandos.",
-  cooldown: 5,
-  run: async (client, message, args, color, prefix) => {
+  run: async (client, message, args, prefix) => {
     //Botones
     const button = new MessageActionRow().addComponents(
       new MessageButton()
-      .setURL(
-        "https://discord.com/api/oauth2/authorize?client_id=868205294096887890&permissions=8&scope=bot"
-      )
+      .setURL("https://discord.com/api/oauth2/authorize?client_id=868205294096887890&permissions=8&scope=bot")
       .setLabel("Invitame")
       .setStyle("LINK"),
       new MessageButton()
@@ -54,14 +51,10 @@ module.exports = {
       //EMBED DE HELP
       const embed = new MessageEmbed()
         .setTitle("📬 Lista de Comandos:")
-        .setDescription(
-          `**Hola me llamo ${client.user.username} y estos son mis comandos.**`
-        )
+        .setDescription(`**Hola me llamo ${client.user.username} y estos son mis comandos.**`)
         .addFields(categories)
-        .setFooter(
-          `Escribe ${prefix}help <comando> para ayuda detallada. | Desarrollado por DGAB#8574`
-        )
-        .setColor(color);
+        .setColor(config.color)
+        .setFooter(`Escribe ${config.prefix}help <comando> para ayuda detallada. | Desarrollado por ${config.developer}`);
       return message.channel.send({
         embeds: [embed],
         components: [button]
@@ -74,55 +67,21 @@ module.exports = {
         );
       if (!command) {
         const embed = new MessageEmbed()
-          .setTitle(
-            `¡Comando no valido! Use \`${prefix}help\` para ver todos los comandos`
-          )
+          .setTitle(`¡Comando no valido! Use \`${prefix}help\` para ver todos los comandos`)
           .setColor("FF0000");
         return message.channel.send({
           embeds: [embed]
         });
       }
       const embed = new MessageEmbed()
-        .setTitle(
-          `Ayuda detallada del comando "${command.name}"`,
-          client.user.avatarURL()
-        )
-        .addField(
-          "Categoria:",
-          command.category ? `\`${command.category}\`` : "El comando no tiene Categoria"
-        )
-        .addField(
-          "Comando:",
-          command.name ? `\`${command.name}\`` : "El comando no tiene nombre."
-        )
-        .addField(
-          "Aliases:",
-          command.aliases ?
-          `\`${command.aliases.join("` `")}\`` :
-          "El comando no tiene aliases."
-        )
-        .addField(
-          "Cooldown:",
-          command.cooldown ?
-          `\`${command.cooldown}\`` :
-          "El comando no tiene aliases."
-        )
-        .addField(
-          "Descripcion:",
-          command.description ?
-          command.description :
-          "El comando no tiene descripcion."
-        )
-        .addField(
-          "Uso:",
-          command.usage ?
-          `\`${prefix}${command.name} ${command.usage}\`` :
-          `\`${prefix}${command.name}\``
-        )
-        .setFooter(
-          `<> = obligatorio | [] = opcional. | No incluyas estos símbolos al momento de ejecutar el comando.`
-        )
-        .setColor(color);
+        .setTitle(`Ayuda detallada del comando "${command.name}"`, client.user.avatarURL())
+        .addField("Categoria:", command.category ? `\`${command.category}\`` : "El comando no tiene Categoria")
+        .addField("Comando:", command.name ? `\`${command.name}\`` : "El comando no tiene nombre.")
+        .addField("Aliases:", command.aliases ? `\`${command.aliases.join("` `")}\`` : "El comando no tiene aliases.")
+        .addField("Descripcion:", command.description ? command.description : "El comando no tiene descripcion.")
+        .addField("Uso:", command.usage ? `\`${config.prefix}${command.name} ${command.usage}\`` : `\`${config.prefix}${command.name}\``)
+        .setFooter(`<> = obligatorio | [] = opcional. | No incluyas estos símbolos al momento de ejecutar el comando.`)
+        .setColor(config.color);
       return message.channel.send({
         embeds: [embed]
       });

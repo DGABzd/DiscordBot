@@ -2,9 +2,12 @@
     "token": "",
     "prefix": "!",
     "color": "0x2d334e",
+    "developer": "DGAV#0001",
     "emoji": {
-        "success": "<a:yes:868260831756963861>",
-        "error": "<a:no:868260948299878502>"
+        "success": "<a:Yes:936725018627416114>",
+        "succesid": "936725018627416114",
+        "error": "<a:No:936725048050454559>",
+        "errorid": "936725048050454559"
     },
     "colors": {
         "primary": "0x2d334e",

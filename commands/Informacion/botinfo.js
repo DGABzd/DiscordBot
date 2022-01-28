@@ -24,7 +24,7 @@ module.exports = {
       const botinfo = new Discord.MessageEmbed()
         .setAuthor(`Informacion del bot`, client.user.avatarURL())
         .setDescription("Informacion acerca del Bot")
-        .addField("Developer:", `DGAB#0001`)
+        .addField("Developer:", `${config}`)
         .addField(
           "Servidores: ",
           "```diff\n- " + client.guilds.cache.size + "\n```",
@@ -34,15 +34,15 @@ module.exports = {
         .addField(
           "CPU: ",
           "```prolog\n" +
-            parseInt(percent) +
-            "%\n```",
+          parseInt(percent) +
+          "%\n```",
           true
         )
         .addField(
           "RAM: ",
           "```fix\n" +
-            (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2) +
-            "MB\n```",
+          (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2) +
+          "MB\n```",
           true
         )
         .addField("Lenguaje: ", '```json\n"JavaScript"\n```', true)
@@ -50,7 +50,9 @@ module.exports = {
         .setFooter(`Informacion del solicitada por ${message.author.username}`, message.author.avatarURL)
         .setColor(color);
 
-      message.channel.send({ embeds: [botinfo] });
+      message.channel.send({
+        embeds: [botinfo]
+      });
     });
   },
 };
