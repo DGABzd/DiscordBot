@@ -2,11 +2,9 @@ const { MessageEmbed, Collection, Client, Intents, Discord } = require("discord.
 let Enmap = require("enmap");
 const chalk = require("chalk");
 const fs = require("fs");
-const distube = require('distube');
 const myIntents = new Intents();
 myIntents.add(32767);
 const client = new Client({ intents: myIntents });
-const player = new distube.default(client);
 const config = require("./config.json");
 
 client.settings = new Enmap({
