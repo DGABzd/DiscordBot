@@ -1,5 +1,5 @@
 # Discord Bot
-Un ejemplo de un codigo eficiente de un bot con discord v13 que hice hace mucho tiempo.
+Un ejemplo de un codigo eficiente de un bot con discord v13 que hice hace mucho tiempo, no revise el codigo pero seguramente tiene fallos tal vez luego lo revise y  arregle y mejore.
 
 # Categoria de comandos
 - Cofiguracion
