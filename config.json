@@ -1,0 +1,16 @@
+{
+    "token": "ODY4MjA1Mjk0MDk2ODg3ODkw.YPsRMA.JX6qK_j_WHR_SzXISMVE9dcCop4",
+    "prefix": "s!",
+    "color": "0x2d334e",
+    "emoji": {
+        "success": "<a:yes:868260831756963861>",
+        "error": "<a:no:868260948299878502>"
+    },
+    "colors": {
+        "primary": "0x2d334e",
+        "negative": "0xcb3234",
+        "positive": "0x008f39",
+        "neutral": "0xe25f23"
+    }
+}
+
