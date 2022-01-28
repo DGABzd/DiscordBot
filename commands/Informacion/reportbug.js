@@ -4,20 +4,21 @@ const {
   MessageButton,
   ButtonInteraction,
 } = require("discord.js");
-const { config } = require("../..");
+const {
+  config
+} = require("../..");
 
 module.exports = {
   name: "reportbug",
-  aliases: ["bug"],
+  aliases: [],
   category: "Informacion",
   description: "Comando para reportar un bug",
   usage: "<reporte>",
-  cooldown: 5,
-  run: async (client, message, args, color) => {
+  run: async (client, message, args) => {
 
     let bug = args.join(" ");
     if (!bug) return message.channel.send("¡Escribe un bug a reportar!");
-    //BOTONES
+    // BOTONES
     let button1 = new MessageButton()
       .setCustomId("yes")
       .setLabel("Confirmar")
@@ -29,7 +30,7 @@ module.exports = {
       .setStyle("DANGER")
       .setEmoji(config.emoji.errorid);
     let row = new MessageActionRow().addComponents(button1, button2);
-    //MENSAJE DE CONFIRMACION
+    // MENSAJE DE CONFIRMACION
     let author = message.author.username;
     let ID = message.author.id;
     let confirmar = new MessageEmbed()
@@ -37,7 +38,10 @@ module.exports = {
       .setAuthor("Confirmacion de Reporte", client.user.displayAvatarURL())
       .setDescription("¿Estás seguro que quieres reportar este bug? __¡Usar mal el comando causara la prohibición!__")
       .addField("Bug a reportar:", bug);
-    message.channel.send({ embeds: [confirmar], components: [row] });
+    message.channel.send({
+      embeds: [confirmar],
+      components: [row]
+    });
     //Colector
     const filter = (interaction) => {
       if (interaction.user.id == message.author.id) return true;
@@ -68,19 +72,21 @@ module.exports = {
           .setColor(color)
           .addField("Reporte:", bug)
           .setThumbnail(message.author.displayAvatarURL())
-          .setFooter(`Reporte Enviado por ${author} | ID: ${ID}`, message.author.displayAvatarURL()
-          );
-        client.channels.cache.get("936724519341674497").send({ embeds: [reporte] });
-        ButtonInteraction.first().reply({ embeds: [confirmado] });
+          .setFooter(`Reporte Enviado por ${author} | ID: ${ID}`, message.author.displayAvatarURL());
+        client.channels.cache.get("936724519341674497").send({
+          embeds: [reporte]
+        });
+        ButtonInteraction.first().reply({
+          embeds: [confirmado]
+        });
       }
       if (id == "no") {
         let cancelado = new MessageEmbed()
           .setColor(0xff0000)
-          .setAuthor(
-            "Reporte Cancelado Con exito!",
-            client.user.displayAvatarURL()
-          );
-        ButtonInteraction.first().reply({ embeds: [cancelado] });
+          .setAuthor("Reporte Cancelado Con exito!", client.user.displayAvatarURL());
+        ButtonInteraction.first().reply({
+          embeds: [cancelado]
+        });
       }
     });
   },

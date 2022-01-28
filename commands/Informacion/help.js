@@ -1,14 +1,5 @@
-const {
-  MessageEmbed,
-  MessageActionRow,
-  MessageButton
-} = require("discord.js");
-const {
-  readdirSync
-} = require("fs");
-const {
-  config
-} = require("../..");
+const {MessageEmbed, MessageActionRow, MessageButton} = require("discord.js");
+const fs = require("fs");
 
 module.exports = {
   category: "Informacion",
@@ -16,7 +7,7 @@ module.exports = {
   aliases: ["ayuda", "commands"],
   description: "Para ver la lista de comandos.",
   run: async (client, message, args, prefix) => {
-    //Botones
+    // Botones
     const button = new MessageActionRow().addComponents(
       new MessageButton()
       .setURL("https://discord.com/api/oauth2/authorize?client_id=868205294096887890&permissions=8&scope=bot")
@@ -27,11 +18,11 @@ module.exports = {
       .setLabel("Soporte")
       .setStyle("LINK")
     );
-    //Comando Help
+    // Comando Help
     if (!args[0]) {
       let categories = [];
-      readdirSync("./commands/").forEach((dir) => {
-        const commands = readdirSync(`./commands/${dir}/`).filter((file) =>
+      fs.readdirSync("./commands/").forEach((dir) => {
+        const commands = fs.readdirSync(`./commands/${dir}/`).filter((file) =>
           file.endsWith(".js")
         );
         const cmds = commands.map((command) => {
