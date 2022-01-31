@@ -1,13 +1,9 @@
 # Discord Bot
-Un ejemplo de un codigo eficiente de un bot con discord v13 que hice hace mucho tiempo, no revise el codigo pero seguramente tiene fallos tal vez luego lo revise y  arregle y mejore.
+Un ejemplo de un codigo eficiente de un bot con discord v13 command handler que hice hace mucho tiempo.
 
-# Categoria de comandos
-- Cofiguracion
-- Divercion
-- Informacion
-- Interaccion
-- Reaccion
-- Utilidad
+# Lista de Comandos
+![image](example.png)
+
 
 # Edita
 - Edita el Archivo config.json -> "token" -> Por el Token de tu Bot o el Bot que quieras.
